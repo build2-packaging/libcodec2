@@ -73,3 +73,6 @@ lib{codec2}:
 {
     cc.export.poptions += "-I$src_root" "-I$out_root"
 }
+
+src/h{*}: install = false
+hxx{*}: install = codec2/
