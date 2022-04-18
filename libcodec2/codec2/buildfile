@@ -5,7 +5,7 @@ import! generate = libcodec2-generate%exe{generate_codebook}
 
 ./: lib{codec2}: \
     src/c{dump lpc nlp postfilter sine codec2 codec2_fft cohpsk codec2_fifo fdmdv fm fsk fmfsk kiss_fft kiss_fftr linreg interp lsp mbest newamp1 newamp2 ofdm ofdm_mode phase quantise pack golay23 freedv_api freedv_1600 freedv_700 freedv_2020 freedv_fsk freedv_vhf_framing freedv_data_channel varicode modem_stats mpdecode_core phi0 gp_interleaver interldpc filter HRA_112_112 HRA_56_56 HRAb_396_504 H_256_768_22 H_256_512_4 HRAa_1536_512 H_128_256_5 H_2064_516_sparse H_4096_8192_3d H_16200_9720 H_1024_2048_4f ldpc_codes lpcnet_freq reliable_text} \
-    src/h{defines} \
+    src/h{*} \
     h{codec2 codec2_fdmdv codec2_cohpsk codec2_fm codec2_ofdm fsk codec2_fifo comp modem_stats freedv_api reliable_text}
 
 lib{codec2}: c{codebook}: src/codebook/file{lsp1.txt lsp2.txt lsp3.txt lsp4.txt lsp5.txt lsp6.txt lsp7.txt lsp8.txt lsp9.txt lsp10.txt} $generate

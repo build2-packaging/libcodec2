@@ -3,7 +3,7 @@ name: libcodec2
 version: 1.0.3-a.0.z
 summary: Open source speech codec designed for communications quality speech between 450 and 3200 bit/s
 license: LGPL-v2.1-only
-description-file: upstream/README.md
+description-file: README.md
 url: https://www.rowetel.com/codec2.html
 src-url: https://github.com/drowe67/codec2
 depends: * build2 >= 0.14.0
