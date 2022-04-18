@@ -75,4 +75,4 @@ lib{codec2}:
 }
 
 src/h{*}: install = false
-h{*}: install = codec2/
+h{*}: install = include/codec2/
