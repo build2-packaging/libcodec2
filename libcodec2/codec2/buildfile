@@ -1,0 +1,75 @@
+c.poptions += "-I$src_base/src" "-I$src_root" "-I$out_root" "-DGIT_HASH=\"None\""
+c.libs += -lm
+
+import! generate = libcodec2-generate%exe{generate_codebook}
+
+./: lib{codec2}: \
+    src/c{dump lpc nlp postfilter sine codec2 codec2_fft cohpsk codec2_fifo fdmdv fm fsk fmfsk kiss_fft kiss_fftr linreg interp lsp mbest newamp1 newamp2 ofdm ofdm_mode phase quantise pack golay23 freedv_api freedv_1600 freedv_700 freedv_2020 freedv_fsk freedv_vhf_framing freedv_data_channel varicode modem_stats mpdecode_core phi0 gp_interleaver interldpc filter HRA_112_112 HRA_56_56 HRAb_396_504 H_256_768_22 H_256_512_4 HRAa_1536_512 H_128_256_5 H_2064_516_sparse H_4096_8192_3d H_16200_9720 H_1024_2048_4f ldpc_codes lpcnet_freq reliable_text} \
+    src/h{defines} \
+    h{codec2 codec2_fdmdv codec2_cohpsk codec2_fm codec2_ofdm fsk codec2_fifo comp modem_stats freedv_api reliable_text}
+
+lib{codec2}: c{codebook}: src/codebook/file{lsp1.txt lsp2.txt lsp3.txt lsp4.txt lsp5.txt lsp6.txt lsp7.txt lsp8.txt lsp9.txt lsp10.txt} $generate
+{{
+    diag generate_codebook lsp_cb
+    $generate lsp_cb $path($<) > $path($>)
+}}
+
+lib{codec2}: c{codebookd}: src/codebook/file{dlsp1.txt dlsp2.txt dlsp3.txt dlsp4.txt dlsp5.txt dlsp6.txt dlsp7.txt dlsp8.txt dlsp9.txt dlsp10.txt} $generate
+{{
+    diag generate_codebook lsp_cbd
+    $generate lsp_cbd $path($<) > $path($>)
+}}
+
+lib{codec2}: c{codebookjvm}: src/codebook/file{lspjvm1.txt lspjvm2.txt lspjvm3.txt} $generate
+{{
+    diag generate_codebook lsp_cbjvm
+    $generate lsp_cbjvm $path($<) > $path($>)
+}}
+
+lib{codec2}: c{codebookge}: src/codebook/file{gecb.txt} $generate
+{{
+    diag generate_codebook ge_cb
+    $generate ge_cb $path($<) > $path($>)
+}}
+
+lib{codec2}: c{codebooknewamp1}: src/codebook/file{train_120_1.txt train_120_2.txt} $generate
+{{
+    diag generate_codebook newamp1vq_cb
+    $generate newamp1vq_cb $path($<) > $path($>)
+}}
+
+lib{codec2}: c{codebooknewamp1_energy}: src/codebook/file{newamp1_energy_q.txt} $generate
+{{
+    diag generate_codebook newamp1_energy_cb
+    $generate newamp1_energy_cb $path($<) > $path($>)
+}}
+
+lib{codec2}: c{codebooknewamp2}: src/codebook/file{codes_450.txt} $generate
+{{
+    diag generate_codebook newamp2vq_cb
+    $generate newamp2vq_cb $path($<) > $path($>)
+}}
+
+lib{codec2}: c{codebooknewamp2_energy}: src/codebook/file{newamp2_energy_q.txt} $generate
+{{
+    diag generate_codebook newamp2_energy_cb
+    $generate newamp2_energy_cb $path($<) > $path($>)
+}}
+
+lib{codec2}: h{config}: in{config} $src_root/manifest
+
+lib{codec2}: h{version}: in{version} $src_root/manifest
+{
+    in.symbol       = '@'
+    in.substitution = lax
+
+    CODEC2_VERSION_MAJOR = '$codec2.version.major'
+    CODEC2_VERSION_MINOR = '$codec2.version.minor'
+    CODEC2_VERSION_PATCH = '$codec2.version.patch'
+    CODEC2_VERSION = '$codec2.version'
+}
+
+lib{codec2}:
+{
+    cc.export.poptions += "-I$src_root" "-I$out_root"
+}

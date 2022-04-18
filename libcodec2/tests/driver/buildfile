@@ -1,0 +1,2 @@
+import libs = libcodec2%lib{codec2}
+exe{driver}: c{main} $libs

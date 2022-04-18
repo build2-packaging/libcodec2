@@ -1,0 +1,2 @@
+c.libs = -lm
+./: exe{generate_codebook}: c{generate_codebook}

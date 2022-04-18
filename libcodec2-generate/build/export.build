@@ -1,0 +1,6 @@
+$out_root/
+{
+  include codec2/
+}
+
+export $out_root/codec2/$import.target
