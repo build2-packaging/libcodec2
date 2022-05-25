@@ -1,6 +1,6 @@
 : 1
 name: libcodec2
-version: 1.0.3-a.0.z
+version: 1.0.3
 summary: Open source speech codec designed for communications quality speech between 450 and 3200 bit/s
 license: LGPL-v2.1-only
 description-file: README.md

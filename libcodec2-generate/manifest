@@ -1,6 +1,6 @@
 : 1
 name: libcodec2-generate
-version: 1.0.3-a.0.z
+version: 1.0.3
 summary: Generation utility for libcodec2 codebook sources
 license: LGPL-v2.1-only
 url: https://www.rowetel.com/codec2.html
